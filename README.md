@@ -31,3 +31,9 @@ LIRI consists of four commands:
 
 4. **node liri.js do-what-it-says**
      LIRI will take the text inside of random.txt and then use it to call one of LIRI's commands.
+
+## Examples
+1. Search for an artist's or band's concert
+![DEMO](/images/concertThis.PNG)
+Format: ![Alt Text](url)
+
