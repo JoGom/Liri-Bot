@@ -35,5 +35,8 @@ LIRI consists of four commands:
 ## Examples
 1. Search for an artist's or band's concert
 ![DEMO](/images/concertThis.PNG)
-Format: ![Alt Text](url)
+2. Search for a song on Spotify
+![DEMO](/images/spotifyThis.PNG)
+If there is no song specified if is filled with a default song
+![DEMO](/images/SpotifyNoInput.PNG)
 
