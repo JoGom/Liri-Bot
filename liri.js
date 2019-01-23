@@ -7,15 +7,11 @@ const moment = require("moment");
 const fs = require("fs");
 
 const input = process.argv;
-const command = input[2];
-    console.log(command);
-    console.log(input);
-let commandParam = process.argv.slice(3).join(" ");;
+let command = input[2];
+let commandParam = input.slice(3).join(" ");;
 
 const eventInfo = function(){
     let queryUrl = "https://rest.bandsintown.com/artists/"+commandParam+"/events?app_id=codingbootcamp"
-    console.log(queryUrl);
-
     axios.get(queryUrl).then(
         function(response) {
             if(response.data.length === 0){
@@ -29,8 +25,7 @@ const eventInfo = function(){
             console.log(`Date of Event: ${moment(response.data[0].datetime).format('MM/DD/YYYY')}\n`);
             console.log("========================");
             };
-            };
-        
+            };  
         });    
 };
 
@@ -51,8 +46,7 @@ const spotifyInfo = function(){
             console.log(`Preview Song: ${x.preview_url}\n--`);
             console.log(`From Album: ${x.album.name}\n`); 
             console.log("========================");
-        }
-        
+        }   
       });
 }
 
@@ -80,38 +74,40 @@ const movieInfo = function(){
         });    
 }
 
-
-
-switch(command){
-    case "concert-this":
-        eventInfo();
-        break;
-    case "spotify-this-song":
-        spotifyInfo();
-        break;
-    case "movie-this":
-        movieInfo();
-        break;
-    case "do-what-it-says":
-        
-        break;
-    default:
-        return undefined;
+const readFile = function(){
+    fs.readFile("random.txt", "utf-8", function(error, data){
+        if(error){
+            return console.log(error);
+        }
+        //grabs data, splits it at every new line and puts it in the created array
+        let dataLines = data.split("\r\n");
+        for(let i = 0; i < dataLines.length; i++){
+            let dataArray = dataLines[i].split(",");
+            command = dataArray[0];
+            commandParam = dataArray[1].replace(/['"]+/g, '');
+            console.log(command);
+            console.log(commandParam);
+            logic();
+        }
+    });
 }
 
-
-
-
-
-
-
-
-
-// const spotify = new Spotify(keys.spotify);
-// spotify.search({ type: 'track', query: 'All the Small Things' }, function(err, data) {
-//     if (err) {
-//       return console.log('Error occurred: ' + err);
-//     }
-   
-//     console.log(data.tracks.items[1]); 
-// });
+const logic = function(){
+    switch(command){
+        case "concert-this":
+            eventInfo();
+            break;
+        case "spotify-this-song":
+            spotifyInfo();
+            break;
+        case "movie-this":
+            movieInfo();
+            break;
+        case "do-what-it-says":
+            readFile();
+            break;
+        default:
+            return undefined;
+    };
+};
+logic();
