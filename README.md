@@ -37,6 +37,14 @@ LIRI consists of four commands:
 ![DEMO](/images/concertThis.PNG)
 2. Search for a song on Spotify
 ![DEMO](/images/spotifyThis.PNG)
-If there is no song specified if is filled with a default song
+If there is no song specified it is filled with a default song
 ![DEMO](/images/SpotifyNoInput.PNG)
+3. Search for a movie
+![DEMO](/images/movieThis.PNG)
+If there is no movie specified it is filled with a default movie
+![DEMO](/images/movieNoInput.PNG)
+4. Do multiple actions based on what is on the random.txt
+![DEMO](/images/randomTXT.PNG)
+LIRI will check the file and do those three actions
+![DEMO](/images/readFile.PNG)
 
