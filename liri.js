@@ -57,8 +57,25 @@ const eventInfo = function(){
             console.log(`Date of Event: ${moment(response.data[0].datetime).format('MM/DD/YYYY')}`);
             console.log("========================")
             };
+        
         });    
 };
+
+const spotifyInfo = function(){
+    spotify = new Spotify(keys.spotify);
+    if(!commandParam){
+        commandParam = "The Sign Ace of Base"
+    }
+    spotify.search({ type: 'track', query: commandParam, limit: 5 }, function(err, data) {
+        if (err) {
+            return console.log('Error occurred: ' + err);
+        }
+        for(let i = 0; i < data.tracks.items.length; i++){
+            console.log(data.tracks.items[i].album.name); 
+        }
+        
+      });
+}
 
 
 
@@ -71,7 +88,7 @@ switch(command){
         eventInfo();
         break;
     case "spotify-this-song":
-
+        spotifyInfo();
         break;
     case "movie-this":
 
